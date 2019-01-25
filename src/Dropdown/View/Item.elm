@@ -38,6 +38,7 @@ view config state selected item =
                 Just selectedItem ->
                     if selectedItem == item then
                         ( config.selectedClass, config.selectedStyles )
+
                     else
                         ( "", [] )
 
@@ -64,6 +65,6 @@ view config state selected item =
          , Utils.referenceAttr config state
          , tabindex -1
          ]
-            ++ List.map (\s -> style (Tuple.first s) (Tuple.second s)) styles
+            ++ List.map (\( f, s ) -> style f s) styles
         )
         [ text (config.toLabel item) ]

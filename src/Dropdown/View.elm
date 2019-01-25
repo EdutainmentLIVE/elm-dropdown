@@ -12,12 +12,11 @@ view : Config msg item -> State -> List item -> Maybe item -> Html (Msg item)
 view config model items selected =
     let
         menuWrapperStyles =
-            [ ( "position", "relative" )
-            ]
+            style "position" "relative"
 
         menu =
             if model.isOpened then
-                div [ style menuWrapperStyles ]
+                div [ menuWrapperStyles ]
                     [ List.view config model items selected
                     ]
 

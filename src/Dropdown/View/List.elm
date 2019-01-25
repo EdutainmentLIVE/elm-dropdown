@@ -22,4 +22,4 @@ view config model items selected =
                 , ( "width", "100%" )
                 ]
     in
-    div [ class classes, style styles ] renderedItems
+    div (class classes :: List.map (\( f, s ) -> style f s) styles) renderedItems

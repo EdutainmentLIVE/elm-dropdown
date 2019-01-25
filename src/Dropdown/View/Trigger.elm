@@ -8,7 +8,7 @@ import Dropdown.View.Arrow as Arrow
 import Dropdown.View.Clear as Clear
 import Html exposing (..)
 import Html.Attributes exposing (class, id, style, tabindex)
-import Html.Events exposing (keyCode, on, onClick, onWithOptions)
+import Html.Events exposing (keyCode, on, onClick, stopPropagationOn)
 import Json.Decode as Decode
 
 
@@ -46,14 +46,15 @@ view config state items selected =
             config.triggerClass
     in
     div
-        [ class classes
-        , onBlurAttribute config state
-        , onClick OnClickPrompt
-        , onKeyUpAttribute
-        , style styles
-        , tabindex 0
-        , Utils.referenceAttr config state
-        ]
+        ([ class classes
+         , onBlurAttribute config state
+         , onClick OnClickPrompt
+         , onKeyUpAttribute
+         , tabindex 0
+         , Utils.referenceAttr config state
+         ]
+            ++ List.map (\( f, s ) -> style f s) styles
+        )
         [ promptOrCurrentView config state selected
         , clearView config state selected
         , arrowView config state
@@ -91,7 +92,7 @@ promptOrCurrentView config state selected =
                 Just item ->
                     config.toLabel item
     in
-    span [ class classes, style styles ] [ text shownText ]
+    span (class classes :: List.map (\( f, s ) -> style f s) styles) [ text shownText ]
 
 
 clearView : Config msg item -> State -> Maybe item -> Html (Msg item)
@@ -104,9 +105,13 @@ clearView config state selected =
             List.append config.clearStyles
                 [ ( "line-height", "0rem" ) ]
 
+        alwaysPreventDefault msg =
+            ( msg, True )
+
         onClickWithoutPropagation msg =
             Decode.succeed msg
-                |> onWithOptions "click" { stopPropagation = True, preventDefault = False }
+                |> Decode.map alwaysPreventDefault
+                |> stopPropagationOn "click"
     in
     if config.hasClear then
         case selected of
@@ -115,10 +120,11 @@ clearView config state selected =
 
             Just _ ->
                 span
-                    [ class classes
-                    , style styles
-                    , onClickWithoutPropagation OnClear
-                    ]
+                    ([ class classes
+                     , onClickWithoutPropagation OnClear
+                     ]
+                        ++ List.map (\( f, s ) -> style f s) styles
+                    )
                     [ Clear.view config ]
 
     else
@@ -138,7 +144,5 @@ arrowView config state =
                 ]
     in
     span
-        [ class classes
-        , style styles
-        ]
+        (class classes :: List.map (\( f, s ) -> style f s) styles)
         [ Arrow.view config ]
