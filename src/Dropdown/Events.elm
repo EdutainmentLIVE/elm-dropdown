@@ -25,7 +25,7 @@ traceDecoder message decoder =
                     decoded |> Decode.succeed
 
                 Err err ->
-                    err |> Debug.log message |> Decode.fail
+                    err |> Debug.log message |> Decode.errorToString |> Decode.fail
     in
     Decode.value
         |> Decode.andThen log
@@ -41,7 +41,6 @@ onBlurAttribute config state =
         attrToMsg attr =
             if attr == state.id then
                 NoOp
-
             else
                 OnBlur
 

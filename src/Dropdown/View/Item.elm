@@ -38,7 +38,6 @@ view config state selected item =
                 Just selectedItem ->
                     if selectedItem == item then
                         ( config.selectedClass, config.selectedStyles )
-
                     else
                         ( "", [] )
 
@@ -58,13 +57,13 @@ view config state selected item =
     -- tabindex needs to be present for the related target to work on blur
     -- tabindex = -1 means do not tab to this element
     div
-        [ class classes
-        , onBlurAttribute config state
-        , onClick (OnSelect item)
-        , onKeyUpAttribute item
-        , Utils.referenceAttr config state
-        , style styles
-        , tabindex -1
-        ]
-        [ text (config.toLabel item)
-        ]
+        ([ class classes
+         , onBlurAttribute config state
+         , onClick (OnSelect item)
+         , onKeyUpAttribute item
+         , Utils.referenceAttr config state
+         , tabindex -1
+         ]
+            ++ List.map (\s -> style (Tuple.first s) (Tuple.second s)) styles
+        )
+        [ text (config.toLabel item) ]
