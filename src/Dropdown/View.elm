@@ -1,4 +1,4 @@
-module Dropdown.View exposing (..)
+module Dropdown.View exposing (view)
 
 import Dropdown.Messages exposing (..)
 import Dropdown.Models exposing (..)
@@ -20,10 +20,11 @@ view config model items selected =
                 div [ style menuWrapperStyles ]
                     [ List.view config model items selected
                     ]
+
             else
                 span [] []
     in
-        div [ id model.id ]
-            [ Trigger.view config model items selected
-            , menu
-            ]
+    div [ id model.id ]
+        [ Trigger.view config model items selected
+        , menu
+        ]

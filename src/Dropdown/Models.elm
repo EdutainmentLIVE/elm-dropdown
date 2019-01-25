@@ -1,4 +1,4 @@
-module Dropdown.Models exposing (..)
+module Dropdown.Models exposing (Config, Key(..), State, Style, newConfig, newState)
 
 
 type alias Style =

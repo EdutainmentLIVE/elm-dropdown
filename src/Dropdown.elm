@@ -1,32 +1,11 @@
-module Dropdown
-    exposing
-        ( Config
-        , State
-        , Msg
-        , newConfig
-        , newState
-        , isOpen
-        , update
-        , view
-        , withArrowClass
-        , withArrowStyles
-        , withArrowSvgClass
-        , withClear
-        , withClearClass
-        , withClearStyles
-        , withClearSvgClass
-        , withItemClass
-        , withItemStyles
-        , withMenuClass
-        , withMenuStyles
-        , withPrompt
-        , withPromptClass
-        , withPromptStyles
-        , withSelectedClass
-        , withSelectedStyles
-        , withTriggerClass
-        , withTriggerStyles
-        )
+module Dropdown exposing
+    ( Config, State, Msg
+    , newConfig, withClear, withPrompt
+    , withArrowClass, withArrowStyles, withArrowSvgClass, withClearClass, withClearStyles, withClearSvgClass, withItemClass, withItemStyles, withMenuClass, withMenuStyles, withPromptClass, withPromptStyles, withSelectedClass, withSelectedStyles, withTriggerClass, withTriggerStyles
+    , newState, isOpen
+    , view
+    , update
+    )
 
 {-| Dropdown component
 
@@ -112,12 +91,12 @@ withArrowClass classes config =
         fn c =
             { c | arrowClass = classes }
     in
-        mapConfig fn config
+    mapConfig fn config
 
 
 {-| Add styles to the arrow wrapper
 
-    Dropdown.withArrowStyles [("color", "red")] config
+    Dropdown.withArrowStyles [ ( "color", "red" ) ] config
 
 -}
 withArrowStyles : List ( String, String ) -> Config msg item -> Config msg item
@@ -126,7 +105,7 @@ withArrowStyles styles config =
         fn c =
             { c | arrowStyles = styles }
     in
-        mapConfig fn config
+    mapConfig fn config
 
 
 {-| Add classes to the arrow svg icon
@@ -140,7 +119,7 @@ withArrowSvgClass classes config =
         fn c =
             { c | arrowSvgClass = classes }
     in
-        mapConfig fn config
+    mapConfig fn config
 
 
 {-| Show or hide the clear (x) button, default is true
@@ -154,7 +133,7 @@ withClear bool config =
         fn c =
             { c | hasClear = bool }
     in
-        mapConfig fn config
+    mapConfig fn config
 
 
 {-| Add classes to the clear button wrapper
@@ -168,12 +147,12 @@ withClearClass classes config =
         fn c =
             { c | clearClass = classes }
     in
-        mapConfig fn config
+    mapConfig fn config
 
 
 {-| Add styles to the clear button wrapper
 
-    Dropdown.withClearStyles [("color", "red")] config
+    Dropdown.withClearStyles [ ( "color", "red" ) ] config
 
 -}
 withClearStyles : List ( String, String ) -> Config msg item -> Config msg item
@@ -182,7 +161,7 @@ withClearStyles styles config =
         fn c =
             { c | clearStyles = styles }
     in
-        mapConfig fn config
+    mapConfig fn config
 
 
 {-| Add classes to the clear icon
@@ -196,7 +175,7 @@ withClearSvgClass classes config =
         fn c =
             { c | clearSvgClass = classes }
     in
-        mapConfig fn config
+    mapConfig fn config
 
 
 {-| Add classes to the items in the list
@@ -210,12 +189,12 @@ withItemClass classes config =
         fn c =
             { c | itemClass = classes }
     in
-        mapConfig fn config
+    mapConfig fn config
 
 
 {-| Add styles to the items in the list
 
-    Dropdown.withInputStyles [("color", "red")] config
+    Dropdown.withInputStyles [ ( "color", "red" ) ] config
 
 -}
 withItemStyles : List ( String, String ) -> Config msg item -> Config msg item
@@ -224,7 +203,7 @@ withItemStyles styles config =
         fn c =
             { c | itemStyles = styles }
     in
-        mapConfig fn config
+    mapConfig fn config
 
 
 {-| Add classes to the menu (list of items)
@@ -238,12 +217,12 @@ withMenuClass classes config =
         fn c =
             { c | menuClass = classes }
     in
-        mapConfig fn config
+    mapConfig fn config
 
 
 {-| Add styles to menu
 
-    Dropdown.withMenuStyles [("color", "red")] config
+    Dropdown.withMenuStyles [ ( "color", "red" ) ] config
 
 -}
 withMenuStyles : List ( String, String ) -> Config msg item -> Config msg item
@@ -252,7 +231,7 @@ withMenuStyles styles config =
         fn c =
             { c | menuStyles = styles }
     in
-        mapConfig fn config
+    mapConfig fn config
 
 
 {-| Add classes to the prompt text (When no item is selected)
@@ -266,7 +245,7 @@ withPromptClass classes config =
         fn c =
             { c | promptClass = classes }
     in
-        mapConfig fn config
+    mapConfig fn config
 
 
 {-| Add a prompt text to be displayed when no element is selected
@@ -280,12 +259,12 @@ withPrompt prompt config =
         fn c =
             { c | prompt = prompt }
     in
-        mapConfig fn config
+    mapConfig fn config
 
 
 {-| Add styles to prompt text
 
-    Dropdown.withPromptStyles [("color", "red")] config
+    Dropdown.withPromptStyles [ ( "color", "red" ) ] config
 
 -}
 withPromptStyles : List ( String, String ) -> Config msg item -> Config msg item
@@ -294,7 +273,7 @@ withPromptStyles styles config =
         fn c =
             { c | promptStyles = styles }
     in
-        mapConfig fn config
+    mapConfig fn config
 
 
 {-| Add classes to currently selected item in the menu
@@ -308,7 +287,7 @@ withSelectedClass classes config =
         fn c =
             { c | selectedClass = classes }
     in
-        mapConfig fn config
+    mapConfig fn config
 
 
 {-| Add classes to trigger element
@@ -322,12 +301,12 @@ withTriggerClass classes config =
         fn c =
             { c | triggerClass = classes }
     in
-        mapConfig fn config
+    mapConfig fn config
 
 
 {-| Add styles to trigger element
 
-    Dropdown.withTriggerStyles [("width", "100px")] config
+    Dropdown.withTriggerStyles [ ( "width", "100px" ) ] config
 
 -}
 withTriggerStyles : List ( String, String ) -> Config msg item -> Config msg item
@@ -336,12 +315,12 @@ withTriggerStyles styles config =
         fn c =
             { c | triggerStyles = styles }
     in
-        mapConfig fn config
+    mapConfig fn config
 
 
 {-| Add styles to currently selected item in the menu
 
-    Dropdown.withSelectedStyles [("color", "red")] config
+    Dropdown.withSelectedStyles [ ( "color", "red" ) ] config
 
 -}
 withSelectedStyles : List ( String, String ) -> Config msg item -> Config msg item
@@ -350,7 +329,7 @@ withSelectedStyles styles config =
         fn c =
             { c | selectedStyles = styles }
     in
-        mapConfig fn config
+    mapConfig fn config
 
 
 {-| @priv
@@ -361,7 +340,7 @@ mapConfig fn config =
         config_ =
             unwrapConfig config
     in
-        PrivateConfig (fn config_)
+    PrivateConfig (fn config_)
 
 
 {-| Create a new state. You must pass a unique identifier for each select component.
@@ -398,7 +377,7 @@ view config model items selected =
         model_ =
             unwrapState model
     in
-        Html.map PrivateMsg (View.view config_ model_ items selected)
+    Html.map PrivateMsg (View.view config_ model_ items selected)
 
 
 {-| Update the component state
@@ -423,11 +402,11 @@ update config msg model =
         model_ =
             unwrapState model
     in
-        let
-            ( mdl, cmd ) =
-                Update.update config_ msg_ model_
-        in
-            ( PrivateState mdl, cmd )
+    let
+        ( mdl, cmd ) =
+            Update.update config_ msg_ model_
+    in
+    ( PrivateState mdl, cmd )
 
 
 {-| @priv

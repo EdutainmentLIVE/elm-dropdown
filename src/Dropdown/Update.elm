@@ -1,4 +1,4 @@
-module Dropdown.Update exposing (..)
+module Dropdown.Update exposing (update)
 
 import Dropdown.Messages exposing (..)
 import Dropdown.Models as Models
@@ -20,7 +20,7 @@ update config msg model =
                     Task.succeed Nothing
                         |> Task.perform config.onSelect
             in
-                ( { model | isOpened = False }, cmd )
+            ( { model | isOpened = False }, cmd )
 
         OnClickPrompt ->
             ( { model | isOpened = not model.isOpened }, Cmd.none )
@@ -34,4 +34,4 @@ update config msg model =
                     Task.succeed (Just item)
                         |> Task.perform config.onSelect
             in
-                ( { model | isOpened = False }, cmd )
+            ( { model | isOpened = False }, cmd )

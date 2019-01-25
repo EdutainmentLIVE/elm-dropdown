@@ -1,4 +1,4 @@
-module Dropdown.View.Clear exposing (..)
+module Dropdown.View.Clear exposing (svgPath, view)
 
 import Dropdown.Models as Models
 import Svg exposing (..)
