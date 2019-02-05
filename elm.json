@@ -1,9 +1,9 @@
 {
     "type": "package",
-    "name": "sporto/elm-dropdown",
+    "name": "EdutainmentLIVE/elm-dropdown",
     "summary": "A dropdown / select component",
     "license": "MIT",
-    "version": "1.5.0",
+    "version": "1.0.0",
     "exposed-modules": [
         "Dropdown"
     ],
