@@ -1,6 +1,5 @@
 module Dropdown.Events exposing (onBlurAttribute, traceDecoder)
 
-import Debug
 import Dropdown.Messages exposing (..)
 import Dropdown.Models exposing (..)
 import Dropdown.Utils exposing (referenceDataName)
@@ -25,7 +24,7 @@ traceDecoder message decoder =
                     decoded |> Decode.succeed
 
                 Err err ->
-                    err |> Debug.log message |> Decode.errorToString |> Decode.fail
+                    err |> Decode.errorToString |> Decode.fail
     in
     Decode.value
         |> Decode.andThen log
