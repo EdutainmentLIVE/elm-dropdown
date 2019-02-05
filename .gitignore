@@ -4,3 +4,5 @@ elm.js
 documentation.json
 .DS_Store
 index.html
+.vscode
+node_modules

@@ -1,4 +1,4 @@
-module Dropdown.View.Arrow exposing (..)
+module Dropdown.View.Arrow exposing (view)
 
 import Dropdown.Models as Models
 import Svg exposing (..)

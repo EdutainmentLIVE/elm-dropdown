@@ -1,4 +1,4 @@
-module Dropdown.Messages exposing (..)
+module Dropdown.Messages exposing (Msg(..))
 
 
 type Msg item

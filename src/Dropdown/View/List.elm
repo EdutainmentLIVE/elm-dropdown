@@ -1,4 +1,4 @@
-module Dropdown.View.List exposing (..)
+module Dropdown.View.List exposing (view)
 
 import Dropdown.Messages as Messages
 import Dropdown.Models as Models
@@ -22,4 +22,4 @@ view config model items selected =
                 , ( "width", "100%" )
                 ]
     in
-        div [ class classes, style styles ] renderedItems
+    div (class classes :: List.map (\( f, s ) -> style f s) styles) renderedItems

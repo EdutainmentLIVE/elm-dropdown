@@ -1,4 +1,4 @@
-module Dropdown.Events exposing (..)
+module Dropdown.Events exposing (onBlurAttribute, traceDecoder)
 
 import Debug
 import Dropdown.Messages exposing (..)
@@ -14,6 +14,7 @@ import Json.Decode as Decode
 Use:
 
     Decode.maybe (traceDecoder "dataDecoder" dataDecoder)
+
 -}
 traceDecoder : String -> Decode.Decoder msg -> Decode.Decoder msg
 traceDecoder message decoder =
@@ -24,10 +25,10 @@ traceDecoder message decoder =
                     decoded |> Decode.succeed
 
                 Err err ->
-                    err |> Debug.log message |> Decode.fail
+                    err |> Debug.log message |> Decode.errorToString |> Decode.fail
     in
-        Decode.value
-            |> Decode.andThen log
+    Decode.value
+        |> Decode.andThen log
 
 
 onBlurAttribute : Config msg item -> State -> Attribute (Msg item)
@@ -48,4 +49,4 @@ onBlurAttribute config state =
                 |> Decode.map (Maybe.map attrToMsg)
                 |> Decode.map (Maybe.withDefault OnBlur)
     in
-        on "blur" blur
+    on "blur" blur

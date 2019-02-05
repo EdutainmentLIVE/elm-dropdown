@@ -1,4 +1,4 @@
-module Dropdown.Utils exposing (..)
+module Dropdown.Utils exposing (referenceAttr, referenceDataName, toKey)
 
 import Dropdown.Models exposing (..)
 import Html exposing (..)
